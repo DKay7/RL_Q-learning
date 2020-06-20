@@ -1,0 +1,92 @@
+@startuml
+
+
+Enemy  --|> Unit: x, y, actions[...]
+Agent --|> Unit : x, y, actions[...]
+
+Environment --* Agent : Agent object <
+Environment --* Enemy : Enemy objects <
+Environment --* Q : Q object <
+
+
+
+
+
+
++class Q{
++gamma : Double
++alpha : Double
++agent : Agent object
++q_table : Dictionary
+___
++set_agent_object()
++teaching()
+}
+
+
++class Unit{
+  +x : Integer
+  +y : Integer
+  +actions[...] : Tuple
+  ___
+  +get_coordinates()
+}
+
+
++class Agent{
+__==Наследоваванные поля__
++x : Integer
++y : Integer
+=actions[...] : Tuple
+__==Наследоваванные методы__
++get_coordinates()
+___
++current_state[...] : Tuple
++previous_state[...] : Tuple
++actions[...] : Tuple
++dim : Integer
++enemies : Enemy object
++q_model : Q object
++dx : Tuple
++dy : Tuple
++epsilon : Double
++reward : Integer
+___
++get_feature()
++strategy()
++move()
+
+
+}
+
+
+~class Enemy{
+__==Наследоваванные поля__
++x : Integer
++y : Integer
++actions[...] : Tuple
+__==Наследоваванные методы__
++get_coordinates()
+__
++move()
+
+}
+
+
+~class Environment{
+~dim : Integer
+~enemies : Enemy object
+~q_model : Q object
+~agent : Agent object
+~map[...] : String
+___
+~step()
+~visualise()
+~is_finished()
+~get_reward()
+~play()
+}
+
+
+
+@enduml
